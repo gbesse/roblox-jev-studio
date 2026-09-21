@@ -1,0 +1,8 @@
+{
+  "name": "RobloxJevStudio",
+  "tree": {
+    "$className": "DataModel",
+    "JevStudioPlugin": { "$path": "src" }
+  }
+}
+

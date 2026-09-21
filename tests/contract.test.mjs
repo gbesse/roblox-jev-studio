@@ -1,0 +1,5 @@
+import test from'node:test';import assert from'node:assert/strict';import{cleanCandidates,locationRequest,validateResponse}from'../scripts/contract.mjs';
+test('bounds and deduplicates exact Instance candidates',()=>{const many=Array.from({length:300},(_,i)=>({id:`i${i}`,name:`Part${i}`,className:'Part',path:`Workspace.Part${i}`}));assert.equal(cleanCandidates(many).length,255);assert.throws(()=>cleanCandidates([]),/Select/)});
+test('choice request contains only selected Instance IDs',()=>{const candidates=cleanCandidates([{id:'instance_1',name:'Part',className:'Part',path:'Workspace.Part'}]),request=locationRequest(candidates,[{id:'naming',instructions:'Ambiguous?'}]);assert.deepEqual(Object.keys(request.questions.naming.criteria),['instance_1'])});
+test('rejects invented Instance citation',()=>{const candidates=[{id:'instance_1',name:'Part',className:'Part',path:'Workspace.Part'}],request=locationRequest(candidates,[{id:'naming',instructions:'Ambiguous?'}]),response={model:'jev-1.13.0',answers:{naming:{type:'choice',choice:'invented'}},usage:{input_tokens:1}};assert.throws(()=>validateResponse(response,request.questions),/Invalid choice/)});
+
