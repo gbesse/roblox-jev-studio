@@ -9,7 +9,7 @@ local toolbar = plugin:CreateToolbar("Jev")
 local toggle = toolbar:CreateButton("Selection Review", "Review exact selected Instances with Jev", "")
 toggle.ClickableWhenViewportHidden = true
 local widgetInfo = DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Right, false, false, 360, 520, 280, 360)
-local widget = plugin:CreateDockWidgetPluginGui("JevSelectionReview", widgetInfo)
+local widget = plugin:CreateDockWidgetPluginGuiAsync("JevSelectionReview", widgetInfo)
 widget.Title = "Jev Selection Review"
 
 local layout = Instance.new("UIListLayout"); layout.Padding = UDim.new(0, 8); layout.Parent = widget
