@@ -1,10 +1,10 @@
 {
   "name": "roblox-jev-studio",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Exact-Instance Jev review inside Roblox Studio.",
   "type": "module",
-  "scripts": { "check": "node scripts/check.mjs", "test": "node --test", "demo": "node scripts/demo.mjs" },
+  "scripts": { "check": "node scripts/check.mjs", "test": "node --test", "demo": "node scripts/demo.mjs", "demo:guard": "node scripts/guard-demo.mjs" },
   "engines": { "node": ">=22" },
   "license": "MIT",
   "repository": { "type": "git", "url": "https://github.com/gbesse/roblox-jev-studio.git" }
