@@ -14,6 +14,10 @@ Import the model into Studio and save the root script as a local plugin, or sync
 
 The default pack reviews naming, hierarchy ambiguity, and unclear responsibility using only Instance name, class, and full path. It is not a security scanner, runtime profiler, or substitute for playtesting.
 
+## Try the Instance identity guard offline
+
+`npm run demo:guard` builds finite choices from two synthetic selected Instances and rejects a response that cites an Instance outside the selection. No Roblox Studio session or API key is needed. Studio loading and the permission prompt remain host checks.
+
 ## Validate
 
 ```bash
