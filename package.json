@@ -1,6 +1,6 @@
 {
   "name": "roblox-jev-studio",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "description": "Exact-Instance Jev review inside Roblox Studio.",
   "type": "module",
