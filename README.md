@@ -29,3 +29,11 @@ npm run demo
 The checks and demo are offline. Every source file is syntax-compiled with Luau 0.739 in CI. Roblox Studio was not installed in the build environment, so Rojo model generation, plugin loading, and the permission prompt remain host-specific checks.
 
 MIT — see [LICENSE](LICENSE).
+
+## October 2026 improvement · Amélioration d’octobre 2026 · Mejora de octubre de 2026
+
+Selection now rejects more than 255 Instances and duplicate IDs instead of silently dropping or conflating objects. This contract check does not validate Roblox Studio behavior.
+
+La sélection refuse désormais plus de 255 Instances et les identifiants en double, au lieu d’omettre ou confondre des objets. Ce contrôle ne valide pas le comportement dans Roblox Studio.
+
+La selección ahora rechaza más de 255 Instances e identificadores duplicados en vez de omitir o confundir objetos. Esta prueba no valida el comportamiento en Roblox Studio.
