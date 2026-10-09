@@ -37,3 +37,7 @@ Selection now rejects more than 255 Instances and duplicate IDs instead of silen
 La sélection refuse désormais plus de 255 Instances et les identifiants en double, au lieu d’omettre ou confondre des objets. Ce contrôle ne valide pas le comportement dans Roblox Studio.
 
 La selección ahora rechaza más de 255 Instances e identificadores duplicados en vez de omitir o confundir objetos. Esta prueba no valida el comportamiento en Roblox Studio.
+
+## Contrôle d’adoption · Adoption check · Comprobación de adopción
+
+[Français : essayer un cas concret](examples/adoption-check.md) · [English: try a concrete case](examples/adoption-check.md) · [Español: pruebe un caso concreto](examples/adoption-check.md).
