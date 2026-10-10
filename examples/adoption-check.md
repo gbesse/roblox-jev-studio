@@ -40,3 +40,15 @@ FR : adaptez une copie de la fixture locale à cette situation, puis vérifiez l
 EN: adapt a copy of the local fixture to this situation, then check the behavior described above. Values are illustrative, not measured Jev output.
 
 ES: adapte una copia de la fixture local a esta situación y compruebe el comportamiento descrito arriba. Los valores son ilustrativos, no resultados Jev medidos.
+
+## Second cas · Second case · Segundo caso
+
+```text
+selected_count=256; selection_limit=255
+```
+
+**FR :** Une sélection au-delà de la limite déclarée doit être refusée avant un appel réseau. Vérifiez ensuite le comportement réel de la sélection dans Studio.
+
+**EN:** A selection beyond the declared limit must be rejected before a network call. Then confirm actual selection behavior in Studio.
+
+**ES:** Una selección por encima del límite declarado debe rechazarse antes de una llamada de red. Confirme después el comportamiento real en Studio.
