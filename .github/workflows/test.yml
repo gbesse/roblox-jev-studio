@@ -13,6 +13,7 @@ jobs:
       - run: echo "8a9b4b381021722c82d6e6cda0964b5c9e7f354ec1035fcd8b657acc22e49247  /tmp/luau.zip" | sha256sum -c -
       - run: mkdir -p /tmp/luau && unzip -q /tmp/luau.zip -d /tmp/luau
       - run: for file in src/*.lua; do /tmp/luau/luau-compile "$file" >/dev/null; done
+      - run: /tmp/luau/luau tests/core.luau
       - run: npm test
       - run: npm run check
       - run: npm run demo:guard

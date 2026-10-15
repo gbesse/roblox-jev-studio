@@ -7,16 +7,17 @@ export type Candidate = { id: string, name: string, className: string, path: str
 export type Issue = { id: string, label: string, instructions: string, markAbove: number }
 
 function Core.cleanCandidates(raw: { Candidate }): { Candidate }
+	if #raw > 255 then error("FR : sélectionnez au plus 255 Instances. EN: Select at most 255 Instances. ES: Seleccione como máximo 255 Instances.", 2) end
 	local result = {}
-	local seen = {}
+	local seenIds = {}
 	for _, candidate in raw do
-		if #result >= 255 then break end
-		if candidate.name ~= "" and not seen[candidate.path] then
-			seen[candidate.path] = true
-			table.insert(result, candidate)
+		if type(candidate.id) ~= "string" or candidate.id == "" or seenIds[candidate.id] then
+			error("FR : identifiants sélectionnés uniques requis. EN: Selected Instance IDs must be unique. ES: Los identificadores seleccionados deben ser únicos.", 2)
 		end
+		seenIds[candidate.id] = true
+		if candidate.name ~= "" then table.insert(result, candidate) end
 	end
-	if #result == 0 then error("Select at least one Instance", 2) end
+	if #result == 0 then error("FR : sélectionnez au moins une Instance. EN: Select at least one Instance. ES: Seleccione al menos una Instance.", 2) end
 	return result
 end
 

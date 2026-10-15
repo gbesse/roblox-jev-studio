@@ -27,8 +27,9 @@ local resultsLayout = Instance.new("UIListLayout"); resultsLayout.Padding = UDim
 local function clearResults() for _, child in results:GetChildren() do if child:IsA("TextButton") then child:Destroy() end end end
 local function candidates()
 	local raw: { any }, instances: { [string]: Instance } = {}, {}
-	for index, instance in Selection:Get() do
-		if index > 255 then break end
+	local selection = Selection:Get()
+	if #selection > 255 then error("FR : sélectionnez au plus 255 Instances. EN: Select at most 255 Instances. ES: Seleccione como máximo 255 Instances.", 2) end
+	for index, instance in selection do
 		local id = "instance_" .. index
 		table.insert(raw, { id = id, name = instance.Name, className = instance.ClassName, path = instance:GetFullName() }); instances[id] = instance
 	end

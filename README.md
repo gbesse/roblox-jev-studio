@@ -41,3 +41,11 @@ La selección ahora rechaza más de 255 Instances e identificadores duplicados e
 ## Contrôle d’adoption · Adoption check · Comprobación de adopción
 
 [Français : essayer un cas concret](examples/adoption-check.md) · [English: try a concrete case](examples/adoption-check.md) · [Español: pruebe un caso concreto](examples/adoption-check.md).
+
+## Native selection identity / Identité native / Identidad nativa
+
+EN: The Luau implementation and Studio entry point now enforce the 255-Instance bound instead of truncating the selection. Distinct Instances with the same name and full path retain separate selected IDs; path strings are descriptions, not unique identities. Duplicate IDs block the whole review. The standalone Luau regression runs against the real `Core.lua`, in addition to JavaScript checks. Studio loading, permissions and UI navigation still require host validation.
+
+FR : L’implémentation Luau et l’entrée Studio appliquent désormais la limite de 255 Instances au lieu de tronquer la sélection. Des Instances distinctes de même nom et chemin conservent leurs ID sélectionnés ; les chemins sont descriptifs, pas des identités uniques. Des ID dupliqués bloquent toute la revue. La régression Luau exécute le vrai `Core.lua`, en plus des contrôles JavaScript. Chargement Studio, permissions et navigation restent à vérifier dans l’hôte.
+
+ES: La implementación Luau y la entrada Studio aplican el límite de 255 Instances en lugar de truncar la selección. Instances distintas con el mismo nombre y ruta conservan sus ID seleccionados; las rutas describen, no identifican de forma única. ID duplicados bloquean toda la revisión. La regresión Luau ejecuta el verdadero `Core.lua`, además de controles JavaScript. Carga Studio, permisos y navegación siguen requiriendo validación en el host.
