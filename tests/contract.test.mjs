@@ -2,3 +2,8 @@ import test from'node:test';import assert from'node:assert/strict';import{cleanC
 test('bounds and deduplicates exact Instance candidates',()=>{const many=Array.from({length:300},(_,i)=>({id:`i${i}`,name:`Part${i}`,className:'Part',path:`Workspace.Part${i}`}));assert.throws(()=>cleanCandidates(many),/at most 255/);assert.throws(()=>cleanCandidates([]),/Select/);assert.throws(()=>cleanCandidates([{id:'same',name:'A',path:'A'},{id:'same',name:'B',path:'B'}]),/unique/)});
 test('choice request contains only selected Instance IDs',()=>{const candidates=cleanCandidates([{id:'instance_1',name:'Part',className:'Part',path:'Workspace.Part'}]),request=locationRequest(candidates,[{id:'naming',instructions:'Ambiguous?'}]);assert.deepEqual(Object.keys(request.questions.naming.criteria),['instance_1'])});
 test('rejects invented Instance citation',()=>{const candidates=[{id:'instance_1',name:'Part',className:'Part',path:'Workspace.Part'}],request=locationRequest(candidates,[{id:'naming',instructions:'Ambiguous?'}]),response={model:'jev-1.13.0',answers:{naming:{type:'choice',choice:'invented'}},usage:{input_tokens:1}};assert.throws(()=>validateResponse(response,request.questions),/Invalid choice/)});
+
+test('distinct siblings with the same full path retain both exact identities',()=>{
+ const candidates=cleanCandidates([{id:'one',name:'Part',className:'Part',path:'Workspace.Part'},{id:'two',name:'Part',className:'Part',path:'Workspace.Part'}]);
+ assert.equal(candidates.length,2);assert.deepEqual(Object.keys(locationRequest(candidates,[{id:'naming',instructions:'Ambiguous?'}]).questions.naming.criteria),['one','two']);
+});
