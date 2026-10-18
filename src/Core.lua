@@ -50,11 +50,15 @@ end
 
 function Core.validateResponse(response, questions)
 	if type(response) ~= "table" or response.model ~= MODEL or type(response.answers) ~= "table" then error("Invalid Jev response envelope", 2) end
-	if type(response.usage) ~= "table" or type(response.usage.input_tokens) ~= "number" then error("Invalid Jev usage", 2) end
+	if type(response.usage) ~= "table" then error("Usage Jev invalide / Invalid Jev usage / Uso Jev no válido", 2) end
+	for _, field in {"input_tokens", "output_tokens"} do
+		local count = response.usage[field]
+		if type(count) ~= "number" or count ~= count or count < 0 or count > 9007199254740991 or count % 1 ~= 0 then error("Usage Jev invalide / Invalid Jev usage / Uso Jev no válido", 2) end
+	end
 	for id, question in questions do
 		local answer = response.answers[id]
 		if type(answer) ~= "table" or answer.type ~= question.type then error("Missing or mismatched answer: " .. id, 2) end
-		if answer.type == "noul" and (type(answer.noul) ~= "number" or answer.noul < 0 or answer.noul > 1) then error("Invalid noul: " .. id, 2) end
+		if answer.type == "noul" and (type(answer.noul) ~= "number" or answer.noul ~= answer.noul or answer.noul < 0 or answer.noul > 1) then error("Probabilité invalide / Invalid noul / Probabilidad no válida: " .. id, 2) end
 		if answer.type == "choice" and question.criteria[answer.choice] == nil then error("Invalid choice: " .. id, 2) end
 	end
 	return response
