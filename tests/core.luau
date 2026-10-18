@@ -14,3 +14,18 @@ for index=1,256 do table.insert(many,{id=tostring(index),name="Part",className="
 assert(not pcall(Core.cleanCandidates,many))
 assert(not pcall(Core.cleanCandidates,{}))
 print("FR : identité native vérifiée. EN: native identity verified. ES: identidad nativa verificada.")
+
+local questions = {issue={type="noul"}}
+local function packet(probability, input, output)
+ return {model=Core.MODEL,answers={issue={type="noul",noul=probability}},usage={input_tokens=input,output_tokens=output}}
+end
+for _, probability in {0/0,math.huge,-math.huge,-0.1,1.1} do
+ assert(not pcall(Core.validateResponse,packet(probability,1,0),questions))
+end
+for _, probability in {0,0.5,1} do assert(pcall(Core.validateResponse,packet(probability,1,0),questions)) end
+for _, count in {0/0,math.huge,-1,0.5,9007199254740992} do
+ assert(not pcall(Core.validateResponse,packet(0.9,count,0),questions))
+ assert(not pcall(Core.validateResponse,packet(0.9,1,count),questions))
+end
+assert(not pcall(Core.validateResponse,packet(0.9,1,nil),questions))
+print("FR : nombres natifs bornés vérifiés. EN: bounded native numbers verified. ES: números nativos limitados verificados.")
